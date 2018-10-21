@@ -1,9 +1,12 @@
 var http = require('http');
 var server = http.createServer(function(req, res) {
 	console.log('server is running');
-	var body = 'Hello World!'
+	var url = 'http://google.com'
+	var body = '<p>Redirecto to <a href="' + url + '">' + url + '</a></p>';
+	res.setHeader('Location', url);
 	res.setHeader('Content-Length', body.length);
-	res.setHeader('Content-Type', 'text/plain');
+	res.setHeader('Content-Type', 'text/html');
+	res.statusCode = 302;
 	res.end(body);
 });
 
